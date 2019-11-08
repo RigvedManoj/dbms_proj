@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<body>
+<body>
+
+<h2>Train Information</h2>
+
+<table>
+  <tr>
+    <th>Train</th>
+    <th>Seats Taken</th>
+    <th>Seats Available</th>
+  </tr>
+  <tr>
+    <td id='x1'>X</td>
+    <td id='x2'>10</td>
+    <td id='x3'>10</td>
+  </tr>
+  <tr>
+    <td id='y1'>Y</td>
+    <td id='y2'>10</td>
+    <td id='y3'>10</td>
+  </tr>
+  <tr>
+    <td id='z1'>Z</td>
+    <td id='z2'>10</td>
+    <td id='z3'>10</td>
+  </tr>
+</table>
+<script>
+function myFunction() {
+  var data = null;
+    $.get( "/view_trains", {
+      canvas_data: JSON.stringify(data)
+    }, function(err, req, resp){
+      console.log(resp["responseJSON"]["results"]);
+      document.getElementById("x1").innerHTML = "X";
+      document.getElementById("x2").innerHTML = 100-resp["responseJSON"]["X"];
+      document.getElementById("x3").innerHTML = resp["responseJSON"]["X"];
+      document.getElementById("y1").innerHTML = "Y";
+      document.getElementById("y2").innerHTML = 100-resp["responseJSON"]["Y"];
+      document.getElementById("y3").innerHTML = resp["responseJSON"]["Y"];
+      document.getElementById("z1").innerHTML = "Z";
+      document.getElementById("z2").innerHTML = 100-resp["responseJSON"]["Z"];
+      document.getElementById("z3").innerHTML = resp["responseJSON"]["Z"];  
+    });
+}
+myFunction();
+</script>
+</body>
+</html>
